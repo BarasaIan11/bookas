@@ -15,10 +15,15 @@ interface ServicesProps {
 
 export default function Services({ openModal }: ServicesProps) {
   // We can track local tab state to coordinate animations with AnimatePresence
-  const [activeTab, setActiveTab] = useState<string>("auto");
+  const [activeTab, setActiveTab] = useState<string>("home");
 
   // Separate featured vs grid services
-  const featuredServices = servicesData.filter(s => s.featured);
+  const featuredServices = servicesData
+    .filter(s => s.featured)
+    .sort((a, b) => {
+      if (a.category === b.category) return 0;
+      return a.category === 'home' ? -1 : 1;
+    });
   
   const gridAutoServices = servicesData.filter(s => s.category === 'auto' && !s.featured);
   const gridHomeServices = servicesData.filter(s => s.category === 'home' && !s.featured);
@@ -156,7 +161,7 @@ export default function Services({ openModal }: ServicesProps) {
 
           {/* Tab Selection */}
           <Tabs 
-            defaultValue="auto" 
+            defaultValue="home" 
             value={activeTab} 
             onValueChange={setActiveTab} 
             className="flex flex-col items-center"
@@ -164,26 +169,26 @@ export default function Services({ openModal }: ServicesProps) {
             {/* Custom Tab List */}
             <TabsList className="bg-slate-100 p-1 rounded-full flex gap-1 mb-10 w-full max-w-sm md:max-w-md shadow-inner border border-slate-200/50">
               <TabsTrigger
-                value="auto"
-                className="w-1/2 flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-bold transition-all data-[active]:bg-sky-500 data-[active]:text-white data-[active]:shadow-md text-slate-600 hover:text-slate-800"
-              >
-                <Car className="w-4 h-4" />
-                <span>Auto Detailing</span>
-              </TabsTrigger>
-              <TabsTrigger
                 value="home"
                 className="w-1/2 flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-bold transition-all data-[active]:bg-sky-500 data-[active]:text-white data-[active]:shadow-md text-slate-600 hover:text-slate-800"
               >
                 <HomeIcon className="w-4 h-4" />
                 <span>Home & Office</span>
               </TabsTrigger>
+              <TabsTrigger
+                value="auto"
+                className="w-1/2 flex items-center justify-center gap-2 rounded-full py-2.5 text-sm font-bold transition-all data-[active]:bg-sky-500 data-[active]:text-white data-[active]:shadow-md text-slate-600 hover:text-slate-800"
+              >
+                <Car className="w-4 h-4" />
+                <span>Auto Detailing</span>
+              </TabsTrigger>
             </TabsList>
 
             {/* Tab Contents */}
             <div className="w-full">
               <AnimatePresence mode="wait">
-                {activeTab === "auto" && (
-                  <TabsContent key="auto" value="auto" className="outline-none">
+                {activeTab === "home" && (
+                  <TabsContent key="home" value="home" className="outline-none">
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -191,7 +196,7 @@ export default function Services({ openModal }: ServicesProps) {
                       transition={{ duration: 0.3 }}
                       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                     >
-                      {gridAutoServices.map((service) => (
+                      {gridHomeServices.map((service) => (
                         <ServiceCard
                           key={service.id}
                           name={service.name}
@@ -204,8 +209,8 @@ export default function Services({ openModal }: ServicesProps) {
                   </TabsContent>
                 )}
 
-                {activeTab === "home" && (
-                  <TabsContent key="home" value="home" className="outline-none">
+                {activeTab === "auto" && (
+                  <TabsContent key="auto" value="auto" className="outline-none">
                     <motion.div
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -213,7 +218,7 @@ export default function Services({ openModal }: ServicesProps) {
                       transition={{ duration: 0.3 }}
                       className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
                     >
-                      {gridHomeServices.map((service) => (
+                      {gridAutoServices.map((service) => (
                         <ServiceCard
                           key={service.id}
                           name={service.name}

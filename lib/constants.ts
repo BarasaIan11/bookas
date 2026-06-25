@@ -1,6 +1,6 @@
 export const COMPANY_NAME = "Bookas Cleaning Service";
 export const TAGLINE = "Spotless Results. Every Time.";
-export const LOCATION = "Nairobi, Kenya";
+export const LOCATION = "Machakos, Kenya";
 
 // WhatsApp number for deep-linking (use digits only: Country Code + Number, no '+' or spaces)
 // Change this to your actual phone number, e.g., 2547XXXXXXXX

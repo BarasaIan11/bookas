@@ -33,6 +33,7 @@ export default function BookingModal({
     phone: '',
     service: '',
     date: '',
+    time: '',
     message: '',
   });
 
@@ -48,6 +49,7 @@ export default function BookingModal({
         phone: '',
         service: selectedService,
         date: '',
+        time: '',
         message: '',
       });
       setErrors({});
@@ -102,9 +104,10 @@ export default function BookingModal({
         newErrors.date = "Date cannot be in the past";
       }
     }
+    if (!form.time) newErrors.time = "Preferred time is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
-  }, [form.name, form.phone, form.service, form.date]);
+  }, [form.name, form.phone, form.service, form.date, form.time]);
 
   // Run validation on inputs if they change after first submit attempt
   useEffect(() => {
@@ -125,7 +128,8 @@ I'd like to book a service:
 📋 Name: ${form.name.trim()}
 📞 Phone: ${form.phone.trim()}
 🧹 Service: ${form.service}
-📅 Date: ${form.date}${form.message.trim() ? `\n💬 Message: ${form.message.trim()}` : ''}
+📅 Date: ${form.date}
+⏰ Preferred Time: ${form.time}${form.message.trim() ? `\n💬 Message: ${form.message.trim()}` : ''}
 
 Please confirm my booking. Thank you!`;
 
@@ -321,6 +325,24 @@ Please confirm my booking. Thank you!`;
                 />
                 {errors.date && (
                   <p className="text-red-500 text-xs font-semibold mt-1">{errors.date}</p>
+                )}
+              </div>
+
+              {/* Time field */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500">
+                  Preferred Time *
+                </label>
+                <input
+                  type="time"
+                  value={form.time}
+                  onChange={(e) => setForm(prev => ({ ...prev, time: e.target.value }))}
+                  className={`w-full text-slate-700 bg-white border ${
+                    errors.time ? 'border-red-500 focus:border-red-500 focus:ring-red-100' : 'border-slate-200 focus:border-sky-500 focus:ring-sky-100'
+                  } py-2.5 px-4 h-11 rounded-xl text-sm focus:outline-hidden focus:ring-3 transition-all`}
+                />
+                {errors.time && (
+                  <p className="text-red-500 text-xs font-semibold mt-1">{errors.time}</p>
                 )}
               </div>
 

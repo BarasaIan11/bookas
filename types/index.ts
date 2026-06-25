@@ -15,6 +15,7 @@ export interface BookingForm {
   phone: string;
   service: string;
   date: string;
+  time: string;
   message: string;
 }
 

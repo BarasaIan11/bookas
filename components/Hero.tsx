@@ -1,8 +1,8 @@
 "use client";
 
-import Image from 'next/image';
-import { MessageCircle, ChevronDown } from 'lucide-react';
-import { motion } from 'framer-motion';
+import Image from "next/image";
+import { MessageCircle, ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface HeroProps {
   openModal: (service?: string) => void;
@@ -10,28 +10,31 @@ interface HeroProps {
 
 export default function Hero({ openModal }: HeroProps) {
   const scrollToServices = () => {
-    const element = document.getElementById('services');
+    const element = document.getElementById("services");
     if (element) {
       const offset = 80;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - offset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   };
 
   return (
-    <section id="home" className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+    <section
+      id="home"
+      className="relative h-screen min-h-[600px] w-full flex items-center justify-center overflow-hidden"
+    >
       {/* Background Image */}
       <Image
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80&auto=format"
-        alt="Bookas Professional Car Detailing and Cleaning Service"
+        src="https://images.unsplash.com/photo-1686178827149-6d55c72d81df?w=1600&q=80&auto=format"
+        alt="Bookas Professional Home and Office Cleaning Service"
         fill
         priority
         sizes="100vw"
-        style={{ objectFit: 'cover' }}
+        style={{ objectFit: "cover" }}
         className="z-0"
       />
       {/* Dark Overlay */}
@@ -46,7 +49,7 @@ export default function Hero({ openModal }: HeroProps) {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-brand-green/90 text-white font-bold text-xs uppercase tracking-wider mb-6 border border-emerald-400/30 shadow-md backdrop-blur-sm"
         >
-          <span>✦ Professional Cleaning in Nairobi</span>
+          <span>✦ Professional Cleaning in Machakos</span>
         </motion.div>
 
         {/* Headline */}
@@ -57,7 +60,9 @@ export default function Hero({ openModal }: HeroProps) {
           className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1] mb-6"
         >
           Spotless Results. <br />
-          <span className="bg-gradient-to-r from-brand-blue to-emerald-400 bg-clip-text text-transparent">Every Time.</span>
+          <span className="bg-gradient-to-r from-brand-blue to-emerald-400 bg-clip-text text-transparent">
+            Every Time.
+          </span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -67,7 +72,9 @@ export default function Hero({ openModal }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="max-w-2xl text-base sm:text-lg md:text-xl text-slate-200/90 font-normal leading-relaxed mb-10"
         >
-          From premium auto detailing to deep home and office cleaning. We bring professional equipment, expert techniques, and the shine directly to your doorstep.
+          From premium auto detailing to deep home and office cleaning. We bring
+          professional equipment, expert techniques, and the shine directly to
+          your doorstep.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -84,7 +91,7 @@ export default function Hero({ openModal }: HeroProps) {
             <MessageCircle className="w-5 h-5 fill-white/10" />
             <span>Book Now</span>
           </button>
-          
+
           <button
             onClick={scrollToServices}
             className="w-full sm:w-auto flex items-center justify-center border-2 border-white/40 hover:border-white bg-white/5 hover:bg-white/15 text-white font-bold px-8 py-4 rounded-full text-base backdrop-blur-sm transition-all"

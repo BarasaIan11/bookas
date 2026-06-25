@@ -11,7 +11,9 @@ import {
   Grid, 
   Home, 
   Brush, 
-  Layers 
+  Layers,
+  BedDouble,
+  Bath
 } from 'lucide-react';
 import { Service } from '@/types';
 
@@ -23,8 +25,7 @@ export const servicesData: Service[] = [
     description: "Deep clean of seats, dashboard, panels, and all interior surfaces for a fresh cabin feel.",
     icon: Sparkles,
     category: "auto",
-    featured: true,
-    image: "https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&q=80&auto=format"
+    featured: false
   },
   {
     id: "exterior-wash",
@@ -108,7 +109,8 @@ export const servicesData: Service[] = [
     description: "Comprehensive cleaning routines for residential spaces and commercial business offices.",
     icon: Home,
     category: "home",
-    featured: false
+    featured: true,
+    image: "https://images.unsplash.com/photo-1563453392212-326f5e854473?w=1200&q=80&auto=format"
   },
   {
     id: "windows",
@@ -131,6 +133,22 @@ export const servicesData: Service[] = [
     name: "Spray",
     description: "Deep sanitization and eco-safe disinfectant spray treatments for homes and workspaces.",
     icon: Sparkles,
+    category: "home",
+    featured: false
+  },
+  {
+    id: "mattress-cleaning",
+    name: "Mattress Cleaning",
+    description: "Deep vacuuming, stain treatment, and deodorizing to remove dust, allergens, and trapped odors.",
+    icon: BedDouble,
+    category: "home",
+    featured: false
+  },
+  {
+    id: "kitchen-bathroom",
+    name: "Kitchen & Bathroom",
+    description: "Detailed cleaning for sinks, counters, tiles, fixtures, and high-touch areas in busy spaces.",
+    icon: Bath,
     category: "home",
     featured: false
   }
